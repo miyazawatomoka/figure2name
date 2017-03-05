@@ -1,0 +1,4 @@
+models/
+/images/
+/test_images/
+*.pyc
