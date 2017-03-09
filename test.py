@@ -1,5 +1,8 @@
+'''
+测试脚本
+'''
 import sys
 sys.path.append("..")
 from recognizer.predicter import Predicter
 pre = Predicter()
-print (pre.predict('../images/yazawa_nico/1.jpg'))
+print (pre.predict('./images/yazawa_nico/1.jpg'))

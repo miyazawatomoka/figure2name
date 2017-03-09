@@ -1,15 +1,20 @@
-import sys
+import sys, os
 from PIL import Image
 import numpy as np
 from sklearn.externals import joblib
 from recognizer.svm_classify import SvmClassify
 sys.path.append("..")
 import i2v
+PATH = os.path.dirname(__file__)
+
 class Predicter(object):
     def __init__(self):
-        self.svm = SvmClassify(clf_path = "../models/recognizer_svm_classify.pkl")
+        clf_path = os.path.join(PATH, "../models/recognizer_svm_classify.pkl")
+        proto_path = os.path.join(PATH, "../models/illust2vec.prototxt")
+        model_path = os.path.join(PATH, "../models/illust2vec_ver200.caffemodel")
+        self.svm = SvmClassify(clf_path = clf_path)
         self.illust2vec = i2v.make_i2v_with_caffe(
-            "../models/illust2vec.prototxt", "../models/illust2vec_ver200.caffemodel")
+            proto_path, model_path)
 
     def classify(self, img):
         illust2vec = self.illust2vec; svm = self.svm;

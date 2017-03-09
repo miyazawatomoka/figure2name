@@ -4,7 +4,7 @@ from collections import OrderedDict
 import os
 import code
 from sklearn.externals import joblib
-
+PATH = os.path.dirname(__file__)
 class SvmClassify(object):
     def __init__(self, clf_path=""):
         nameList, x, y = self.__get_x_y()
@@ -14,7 +14,7 @@ class SvmClassify(object):
         if (clf !=""):
             self.clf = joblib.load(clf_path)
 
-    def train(self, path="../models/recognizer_svm_classify.pkl"):
+    def train(self, path=os.path.join(PATH, "../models/recognizer_svm_classify.pkl")):
         self.clf.fit(self.x, self.y)
         joblib.dump(self.clf, path)
 
@@ -27,7 +27,7 @@ class SvmClassify(object):
     def __get_x_y(self):
         x = []
         y = []
-        rootDir = '../images/'
+        rootDir = os.path.join(PATH, '../images/')
         listDirs = os.walk(rootDir)
         nameList  = os.listdir(rootDir)  # 这里可用一个临时hash重构
         for root, dirs, files in listDirs:
@@ -40,7 +40,7 @@ class SvmClassify(object):
         return nameList, x, y
 
     def test(self):
-        rootDir  = '../test_images'
+        rootDir  = os.path.join(PATH, '../test_images')
         nameList = self.nameList
         listDirs = os.walk(rootDir)
         clf        =  self.clf
