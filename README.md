@@ -1,5 +1,24 @@
 # Figure2Name
 这是一个动画人物识别模块
+## 结构目录
+```
+- figure2Name
+  - i2v
+  - images
+    - kousaka_honoka
+    - yazawa_nico
+    - takamachi_nanoha
+    ...
+  - test_images
+    - kousaka_honoka
+    - yazawa_nico
+    - takamachi_nanoha
+    ...
+  - models
+  - recognizer
+  - scripts
+
+```
 ## 用法
 1. 首先下载必要的模型与数据集
 2. 安装依赖
@@ -8,7 +27,7 @@
 ```python
 from recognizer.predicter import Predicter
 pre = Predicter()
-name = pre.predict('../images/yazawa_nico/1.jpg')
+name = pre.predict('./images/yazawa_nico/1.jpg')
 print(name)
 ```
 ## 实现
@@ -20,7 +39,7 @@ print(name)
 之后,通过svm对特征向量进行分类.最后达到了只需要使用15张图的训练,即可对一个人物进行识别.
 ### 依赖
 * numpy
-* caffe(请编译并安装caffe-python模块)
+* caffe(编译并安装caffe-python模块)
 * pillow
 * sklearn
 
